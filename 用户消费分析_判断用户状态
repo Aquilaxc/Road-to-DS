@@ -1,0 +1,26 @@
+def active_status(data):
+    status=[]
+    for i in range(18):
+        if data[i]==0:  # 若本月未消费
+            if len(status)>0:   # 若本月不是第一个月
+                if status[i-1]=='unreg':   # 若上个月未激活
+                    status.append('unreg')   # 则本月也是未激活
+                else:   # 若上个月已激活
+                    status.append('unactive')  # 则本月是未活跃
+            else:   # 若本月是第一个月
+                status.append('unreg')  # 则本月是未激活
+        elif data[i]>0:   # 若本月有消费
+            if len(status)>0:   # 若本月不是第一个月
+                if status[i-1]=='unreg':   # 若上个月未激活
+                    status.append('new')   # 则本月为新用户
+                elif status[i-1]=='unactive':  # 若上个月是未活跃
+                    status.append('return')   # 则本月是回归
+                else:   # 若上个月是活跃
+                    status.append('active')   # 则本月也是活跃
+            else:   #若本月是第一个月
+                status.append('new')   # 则本月是新用户
+    return pd.Series(status,index=columns_month)
+    
+    
+    
+    
