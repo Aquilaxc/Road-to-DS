@@ -1,0 +1,5 @@
+from matplotlib.font_manager import FontProperties
+font_zh=FontProperties(fname='C:/Windows/Fonts/simhei.ttf')
+def fontzh(plot):
+    for label in plot.get_xticklabels():
+        label.set_fontproperties(font_zh)
